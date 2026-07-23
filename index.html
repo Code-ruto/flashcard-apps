@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Study workspace</p>
+        <h1>Flashcard App</h1>
+      </div>
+      <button id="createDeckBtn" class="primary-btn" type="button">New deck</button>
+    </header>
+
+    <div class="app-layout">
+      <aside class="sidebar" aria-label="Deck navigation">
+        <section class="panel">
+          <h2>Decks</h2>
+          <div id="deckList" class="stack-list"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Create deck</h2>
+          <form id="deckForm" class="stack-form">
+            <label for="deckNameInput">Deck name</label>
+            <input id="deckNameInput" name="deckName" type="text" placeholder="e.g. Spanish" required />
+            <button class="primary-btn" type="submit">Add deck</button>
+          </form>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <section class="panel study-panel">
+          <div class="study-toolbar">
+            <label for="searchInput" class="visually-hidden">Search cards</label>
+            <input id="searchInput" type="search" placeholder="Search inside this deck" />
+            <button id="shuffleBtn" class="secondary-btn" type="button">Shuffle</button>
+          </div>
+
+          <div class="study-card-area">
+            <button id="prevBtn" class="secondary-btn" type="button" aria-label="Previous card">Previous</button>
+
+            <button id="flashcardButton" class="flashcard" type="button" aria-pressed="false" aria-label="Flip flashcard">
+              <span class="flashcard-inner" id="flashcardInner">
+                <span class="flashcard-face flashcard-front">
+                  <span class="flashcard-label">Front</span>
+                  <span id="cardFrontText" class="flashcard-text"></span>
+                </span>
+                <span class="flashcard-face flashcard-back">
+                  <span class="flashcard-label">Back</span>
+                  <span id="cardBackText" class="flashcard-text"></span>
+                </span>
+              </span>
+            </button>
+
+            <button id="nextBtn" class="secondary-btn" type="button" aria-label="Next card">Next</button>
+          </div>
+
+          <div class="study-meta">
+            <p id="cardCounter" aria-live="polite">0 / 0</p>
+            <p id="studyStatus" aria-live="polite">Select or create a deck to begin.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Cards</h2>
+          </div>
+
+          <form id="cardForm" class="stack-form">
+            <div class="field-grid">
+              <label for="frontInput">Front</label>
+              <textarea id="frontInput" name="front" rows="3" placeholder="Front text" required></textarea>
+            </div>
+            <div class="field-grid">
+              <label for="backInput">Back</label>
+              <textarea id="backInput" name="back" rows="3" placeholder="Back text" required></textarea>
+            </div>
+            <button class="primary-btn" type="submit">Add card</button>
+          </form>
+
+          <div id="cardList" class="card-list" aria-label="Card editor list"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="editorModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-header">
+          <h2 id="modalTitle">Edit item</h2>
+          <button id="closeModalBtn" class="icon-btn" type="button" aria-label="Close editor">×</button>
+        </div>
+        <form id="editorForm" class="stack-form">
+          <label for="modalNameInput">Name</label>
+          <input id="modalNameInput" type="text" required />
+          <div id="modalCardFields" class="field-grid hidden">
+            <label for="modalFrontInput">Front</label>
+            <textarea id="modalFrontInput" rows="3" required></textarea>
+            <label for="modalBackInput">Back</label>
+            <textarea id="modalBackInput" rows="3" required></textarea>
+          </div>
+          <div class="modal-actions">
+            <button class="primary-btn" type="submit">Save</button>
+            <button id="cancelModalBtn" class="secondary-btn" type="button">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <p>Flashcards with deck management, study mode, and LocalStorage persistence.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
