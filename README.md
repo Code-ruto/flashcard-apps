@@ -1,3 +1,5 @@
+Link to project webpage:  https://code-ruto.github.io/flashcard-apps/
+
 ## The goal of this project was to understand how to use GitHub Copilot to create an application in coding languages I was not skilled in. 
 The main takeaways when building the real exercise with your team:
 
